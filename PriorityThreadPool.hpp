@@ -124,19 +124,3 @@ int compute(int x)
 {
     return x * x;
 }
-
-int main()
-{
-    PriorityThreadPool pool(4);
-
-    auto f1 = pool.submit(2, compute, 5);
-    auto f2 = pool.submit(1, compute, 10);
-    auto f3 = pool.submit(1, []() -> std::string {
-        return "hello from thread pool";
-    });
-
-    std::cout << "f1: " << f1.get() << "\n";  // 25
-    std::cout << "f2: " << f2.get() << "\n";  // 100
-    std::cout << "f3: " << f3.get() << "\n";  // hello from thread pool
-    return 0;
-}
